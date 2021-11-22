@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  namespace: gsm-argocd
+  namespace: argocd
   name: root
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: gsm-argocd
+    namespace: argocd
   project: default
   source:
     path: apps/
