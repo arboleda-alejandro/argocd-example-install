@@ -10,9 +10,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: gsm-argocd
   project: default
-  applicationSources:
-    - cluster: '*'
-      namespace: '*'
   source:
     path: charts/argo-cd
     repoURL: https://github.com/arboleda-alejandro/argocd-example-install.git
