@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd
+  name: prometheus
   namespace: gsm-argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,9 +11,13 @@ spec:
     namespace: gsm-argocd
   project: default
   source:
-    path: charts/argo-cd
-    repoURL: https://github.com/arboleda-alejandro/argocd-example-install.git
-    targetRevision: HEAD
+    chart: prometheus
+    helm:
+      values: |
+        pushgateway:
+          enabled: false
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 13.0.2
   syncPolicy:
     automated:
       prune: true
