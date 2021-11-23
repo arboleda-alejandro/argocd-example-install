@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: gsm-root
+  name: root
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
