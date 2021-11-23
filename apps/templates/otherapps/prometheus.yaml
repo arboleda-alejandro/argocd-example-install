@@ -9,7 +9,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: kubernetes-addons
-
   project: default
   source:
     chart: prometheus
