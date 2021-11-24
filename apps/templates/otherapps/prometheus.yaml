@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: kubernetes-addons
+    namespace: gsm-argocd
   project: default
   source:
     chart: prometheus
