@@ -6,6 +6,8 @@ argo-cd:
   dex:
     enabled: false
   server:
+    service:
+    name: argocd-server            
     extraArgs:
       - --insecure
     config:
