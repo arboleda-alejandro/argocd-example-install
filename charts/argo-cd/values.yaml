@@ -6,7 +6,8 @@ argo-cd:
   dex:
     enabled: false
   server:
-    namespace: argocd
+    extraArgs:
+      - --insecure
     config:
       repositories: |
         - type: helm
