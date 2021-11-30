@@ -2,13 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: gsm-prometheus-general
-  namespace: gsm-argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  namespace: default
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: gsm-argocd
+    namespace: default
   project: default
   source:
     chart: prometheus
