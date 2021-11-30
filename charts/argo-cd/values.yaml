@@ -31,12 +31,6 @@ argo-cd:
         app.kubernetes.io/component: server
         app.kubernetes.io/name: argocd-server
         app.kubernetes.io/part-of: argocd
-      type: LoadBalancer
-      servicePortHttpName: http
-      servicePortHttp: 80
-      servicePortHttpsName: https
-      servicePortHttps: 443
-      namedTargetPort: false 
     config:
       repositories: |
         - type: helm
