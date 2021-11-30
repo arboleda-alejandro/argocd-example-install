@@ -1,0 +1,57 @@
+applications:
+- name: root-base-system
+  spec:
+    project: gsm
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+    source:
+      repoURL: https://github.com/arboleda-alejandro/argocd-example-install.git
+      targetRevision: main
+      path: 'applications/root'
+
+      helm:
+        releaseName: 'root-base-system'
+        valueFiles:
+        - 'values.yaml'
+        - 'values_general.yaml'
+    destination:
+      server: 'https://kubernetes.default.svc'
+      namespace: 'gsm-system'
+
+projects:
+- name: contentgraph
+  spec:
+    clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+    description: Project to configure gsm applications
+    destinations:
+    - namespace: 'cg-gitlab'
+      server: https://kubernetes.default.svc
+    sourceRepos:
+    - https://github.com/arboleda-alejandro/argocd-example-install.git
+- name: gsm
+  spec:
+    clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+    description: Project to configure gsm applications
+    destinations:
+    - namespace: 'gsm-argocd'
+      server: https://kubernetes.default.svc
+    - namespace: 'gsm-istio'
+      server: https://kubernetes.default.svc
+    - namespace: 'gsm-kyverno'
+      server: https://kubernetes.default.svc
+    - namespace: 'gsm-rbac'
+      server: https://kubernetes.default.svc
+    - namespace: 'gsm-system'
+      server: https://kubernetes.default.svc
+    - namespace: 'kube-system'
+      server: https://kubernetes.default.svc
+    - namespace: 'monitoring'
+      server: https://kubernetes.default.svc
+    sourceRepos:
+    - https://github.com/arboleda-alejandro/argocd-example-install.git

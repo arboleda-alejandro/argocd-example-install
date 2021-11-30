@@ -1,0 +1,13 @@
+{{- range $indexr, $project := .Values.projects }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $project.name }}
+  {{- if not $project.disableDeleteProtection }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  {{- end }}
+spec:
+{{- toYaml $project.spec | nindent 2 }}
+{{- end }}
