@@ -9,6 +9,9 @@ argo-cd:
   dex:
     enabled: false
   server:
+    autoscaling:
+      enabled: true
+      minReplicas: 2
     extraArgs:
       - --insecure
     affinity:
