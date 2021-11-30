@@ -1,0 +1,33 @@
+applicationSets:
+- name: base-system-helm
+  spec:
+    generators:
+    - git:
+        repoURL: https://github.com/arboleda-alejandro/argocd-example-install.git
+        revision: main
+        files:
+        - path: 'applications/*/appset-config/*.h.json'
+    template:
+      metadata:
+        name: '{{appGroup}}-{{appInstance}}'
+      spec:
+        project: '{{project}}'
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+          - CreateNamespace=true
+        source:
+          repoURL: https://github.com/arboleda-alejandro/argocd-example-install.git
+          targetRevision: main
+          path: '{{appPath}}'
+
+          helm:
+            releaseName: '{{appGroup}}-{{appInstance}}'
+            valueFiles:
+            - values.yaml
+            - '{{valuesFile}}'
+        destination:
+          server: '{{clusterURL}}'
+          namespace: '{{namespace}}'

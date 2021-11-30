@@ -1,0 +1,18 @@
+{{- range $indexr, $application := .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $application.name }}
+  {{- if $application.namespace }}
+  namespace: {{ $application.namespace }}
+  {{- else }}
+  namespace: {{ $.Values.defaultNamespace }}
+  {{- end }}
+  {{- if not $application.disableCascade }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  {{- end }}
+spec:
+{{- toYaml $application.spec | nindent 2 }}
+{{- end }}
