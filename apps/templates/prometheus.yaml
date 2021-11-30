@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: gsm-prometheus-general
-  namespace: default
+  namespace: fabio
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: fabio
   project: default
   source:
     chart: prometheus
