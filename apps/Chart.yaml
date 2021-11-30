@@ -1,0 +1,3 @@
+apiVersion: v2
+name: argocd-creator
+version: 1.0.0
