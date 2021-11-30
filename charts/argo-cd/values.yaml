@@ -1,14 +1,20 @@
 argo-cd:
   installCRDs: false
-  fullnameOverride: "argocd"
+  fullnameOverride: argocd
   global:
     securityContext:
       fsGroup: 999
     image:
       tag: v2.1.1
   dex:
-    enabled: false
+    enabled: true
+    metrics:
+      enabled: true
   server:
+    metrics:
+      enabled: true
+    extraArgs:
+      - --insecure
     affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -23,19 +29,18 @@ argo-cd:
                 matchLabels:
                   app.kubernetes.io/part-of: argocd
               topologyKey: kubernetes.io/hostname
-            weight: 5      
+            weight: 5
     service:
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/name: argocd-server
+        app.kubernetes.io/part-of: argocd
       type: LoadBalancer
       servicePortHttpName: http
       servicePortHttp: 80
       servicePortHttpsName: https
       servicePortHttps: 443
-      namedTargetPort: false
-    metrics:
-      enabled: true
-      namedTargetPort: false
-    extraArgs:
-      - --insecure
+      namedTargetPort: false 
     config:
       repositories: |
         - type: helm
