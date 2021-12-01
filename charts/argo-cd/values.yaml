@@ -1,3 +1,18 @@
+argo-scheduling: &argo-scheduling
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: team
+            operator: In
+            values:
+            - fep
+  tolerations:
+    - key: "team"
+      value: "fep"
+      operator: "Equal"
+      effect: "NoSchedule"
 argo-cd:
   installCRDs: false
   fullnameOverride: argocd
@@ -8,28 +23,22 @@ argo-cd:
       tag: v2.1.1
   dex:
     enabled: false
+  dex:
+    <<: *argo-scheduling
+  redis:
+    <<: *argo-scheduling
+  repoServer:
+    <<: *argo-scheduling
+  controller:
+    <<: *argo-scheduling
   server:
+    <<: *argo-scheduling
     replicas: 2
     env:
       - name: ARGOCD_API_SERVER_REPLICAS
         value: '2'
     extraArgs:
       - --insecure
-    affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/name: argocd-server
-              topologyKey: kubernetes.io/hostname
-            weight: 100
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  app.kubernetes.io/part-of: argocd
-              topologyKey: kubernetes.io/hostname
-            weight: 5
     service:
       labels:
         app.kubernetes.io/component: server
@@ -42,4 +51,4 @@ argo-cd:
           url: https://charts.helm.sh/stable
         - type: helm
           name: argo-cd
-          url: https://argoproj.github.io/argo-helm
+          url: https://argoproj.github.io/argo-helm  
