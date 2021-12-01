@@ -14,7 +14,7 @@ argo-scheduling: &argo-scheduling
       operator: "Equal"
       effect: "NoSchedule"
 argocd-applicationset:
-	<<: *argo-scheduling
+    <<: *argo-scheduling
     replicaCount: 1
     image:
     # -- The image repository
