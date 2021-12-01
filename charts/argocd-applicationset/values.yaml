@@ -45,7 +45,7 @@ argocd-applicationset:
   # -- If defined, uses a Secret to pull an image from a private Docker registry or repository.
   imagePullSecrets: []
   # -- Provide a name in place of `argocd-applicationset`
-  nameOverride: ""
+  nameOverride: argocd-applicationset-controller
   # -- Override the default fully qualified app name
   fullnameOverride: argocd-applicationset-controller
   serviceAccount:
