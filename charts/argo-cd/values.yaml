@@ -33,10 +33,6 @@ argo-cd:
     <<: *argo-scheduling
   server:
     <<: *argo-scheduling
-    replicas: 2
-    env:
-      - name: ARGOCD_API_SERVER_REPLICAS
-        value: '2'
     extraArgs:
       - --insecure
     service:
