@@ -33,6 +33,13 @@ argo-cd:
     <<: *argo-scheduling
   server:
     <<: *argo-scheduling
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 54Mi
     extraArgs:
       - --insecure
     service:
