@@ -33,10 +33,13 @@ argo-cd:
     <<: *argo-scheduling
   server:
     <<: *argo-scheduling
-    replicas: 2
-    env:
-      - name: ARGOCD_API_SERVER_REPLICAS
-        value: '2'
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 54Mi
     extraArgs:
       - --insecure
     service:
