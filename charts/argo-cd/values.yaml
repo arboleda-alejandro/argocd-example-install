@@ -51,7 +51,7 @@ argo-cd:
       repositories: |
         - type: helm
           name: stable
-          url: https://artifacthub.io/helm-charts/ 
+          url: https://artifacthub.github.io/helm-charts/
         - type: helm
           name: argo-cd
           url: https://argoproj.github.io/argo-helm  
