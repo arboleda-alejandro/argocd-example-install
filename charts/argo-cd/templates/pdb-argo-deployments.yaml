@@ -13,5 +13,7 @@ spec:
   maxUnavailable: {{ $deployment.maxUnavailable }}
   {{- end }}
   selector:
-    matchLabels: {{ $deployment.matchLabels }}
+    matchLabels:
+      app.kubernetes.io/instance: {{ $deployment.instanceName }}
+      app.kubernetes.io/name: {{ $deployment.name }}
 {{- end }}
