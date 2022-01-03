@@ -1,0 +1,16 @@
+{{- range $deployment := .Values.pdb.deployments }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ $deployment.name }}-pdb
+  namespace: {{ $deployment.namespace }}
+spec:
+  {{- if $deployment.minAvailable }}
+  minAvailable: {{ $deployment.minAvailable }}
+  {{- end }}
+  {{- if $deployment.maxUnavailable }} 
+  maxUnavailable: {{ $deployment.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels: {{ $deployment.matchLabels }}

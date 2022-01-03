@@ -55,3 +55,19 @@ argo-cd:
         - type: helm
           name: argo-cd
           url: https://argoproj.github.io/argo-helm  
+
+
+pdb:
+  deployments:
+  - name: argocd-server
+    namespace: gsm-argocd
+    minAvailable: 1
+    matchLabels:
+      app.kubernetes.io/instance: argo-cd
+      app.kubernetes.io/name: argocd-server
+  - name: argocd-repo-server
+    namespace: gsm-argocd
+    minAvailable: 1
+    matchLabels:
+      app.kubernetes.io/instance: argo-cd
+      app.kubernetes.io/name: argocd-repo-server
