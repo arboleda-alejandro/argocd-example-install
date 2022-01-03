@@ -29,6 +29,7 @@ argo-cd:
     <<: *argo-scheduling
   repoServer:
     <<: *argo-scheduling
+    replicas: 2
   controller:
     <<: *argo-scheduling
   server:
