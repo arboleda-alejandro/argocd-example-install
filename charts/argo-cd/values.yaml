@@ -42,6 +42,10 @@ argo-cd:
         memory: 54Mi
     extraArgs:
       - --insecure
+    replicas: 2
+    env:
+    - name: ARGOCD_CONTROLLER_REPLICAS
+      value: "2"
     service:
       labels:
         app.kubernetes.io/component: server
