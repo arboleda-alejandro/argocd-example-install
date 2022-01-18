@@ -20,7 +20,7 @@ argo-cd:
     securityContext:
       fsGroup: 999
     image:
-      tag: v2.1.1
+      tag: v2.2.2
   dex:
     enabled: false
   dex:
