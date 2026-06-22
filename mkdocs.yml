@@ -1,0 +1,6 @@
+site_name: argocd-example-install
+docs_dir: docs
+repo_url: https://github.com/arboleda-alejandro/argocd-example-install
+edit_uri: blob/master/docs
+plugins:
+  - techdocs-core
