@@ -5,8 +5,12 @@ metadata:
   annotations:
     github.com/project-slug: arboleda-alejandro/argocd-example-install
     backstage.io/techdocs-ref: dir:.
+  description: Example ArgoCD installation using the app-of-apps pattern with Helm charts
 spec:
-  type: other
+  type: service
   lifecycle: experimental
   owner: user:default/arboleda-alejandro
+  system: gitops-platform
+  dependsOn:
+    - component:argo-helm-alejo
 
